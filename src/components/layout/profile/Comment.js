@@ -1,6 +1,8 @@
 import React from 'react'
 
 const Comment = ({profileImage, name, comment, date}) => {
+  console.log(name);
+  
     return (
         <div className="card" style={{width: '800px'}}>
         <div className="card-body">

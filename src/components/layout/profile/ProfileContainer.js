@@ -3,10 +3,11 @@ import MainInfo from './MainInfo';
 import StudiesContainer from './StudiesContainer';
 import InfoContainer from './InfoContainer';
 import {connect} from 'react-redux';
-
+import { useLocation, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const ProfileContainer = ({user}) => {
-     
+  
     if(user == null) return null
     
     const {

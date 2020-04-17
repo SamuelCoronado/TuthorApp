@@ -3,6 +3,7 @@ import {BrowserRouter as Router,Route, Redirect, Switch} from 'react-router-dom'
 import Navbar from './components/layout/Navbar';
 import AlertComponent from './components/layout/AlertComponent';
 import ProfileContainer from './components/layout/profile/ProfileContainer'
+import {UserContainer} from './components/layout/profile/UserContainer';
 import Register from './components/auth/Register';
 import store from './store';
 import {loadUser} from './actions/authActions';
@@ -28,6 +29,9 @@ function App() {
       <Switch>
         <Route exact path="/register" component={Register} />
         <Route exact path="/profile" component={ProfileContainer} />
+        <Route exact path="/users/:userId">
+          <UserContainer />
+        </Route>
       </Switch>
     </Router>
   );

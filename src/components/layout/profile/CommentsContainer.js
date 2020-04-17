@@ -7,13 +7,15 @@ const CommentsContainer = ({comments}) => {
             <h4>Recent comments</h4>
             {
                 comments.length === 0 ?
-                <h4>There are not comments</h4>
+                <div className="container">
+                    <h4>There are not comments</h4>
+                </div>
                 :
                 <div style={{maxHeight: '400px', overflow: 'scroll'}}>
                     {
                         comments.map((comment) => {
                             return(
-                                <Comment profileImage={comment.profileImage} name={comment.name} comment={comment.comment} date={comment.date}/>
+                                <Comment profileImage={comment.profileImage} name={comment.user.name} comment={comment.opinion} date={comment.date}/>
                             )
                         })
                     }

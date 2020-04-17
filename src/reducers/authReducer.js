@@ -36,6 +36,23 @@ export default function(state = initialState, action){
                 isAuthenticated: false,
                 loading:false
             }
+        case 'SET_ABOUT_SUCCESS':
+            console.log(payload.about);
+            
+            return{
+                ...state,
+                user: {...state.user, about: payload.about}
+            }
+        case 'ADD_STUDY_SUCCESS':
+            return{
+                ...state,
+                user: {...state.user, studies: [...payload]}
+            }
+        case 'DELETE_STUDY_SUCCESS':
+            return{
+                ...state,
+                user: {...state.user, studies: [...payload]}
+            }
         default:
             return state
     }
