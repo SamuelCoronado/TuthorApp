@@ -19,7 +19,9 @@ const ProfileContainer = ({user}) => {
         studies,
         about,
         opinions
-    } = user
+    } = user.user
+    console.log(user);
+    
     
 
     return (
@@ -41,6 +43,7 @@ const ProfileContainer = ({user}) => {
 
 const mapStateToProps = (state) => ({
     user: state.authReducer.user
+   // userTutorings: state.authReducer.user.userTutorings
 })
 
 export default connect(mapStateToProps,null)(ProfileContainer)

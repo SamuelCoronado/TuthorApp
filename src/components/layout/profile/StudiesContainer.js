@@ -60,8 +60,6 @@ const StudiesContainer = ({studies, isUserProfile, addStudy,deleteStudy}) => {
 
     return (
         <>
-       
-
       <Modal show={show} onHide={handleClose} animation={true}>
         <Modal.Header closeButton>
           <Modal.Title>Add new study</Modal.Title>

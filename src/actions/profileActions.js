@@ -86,3 +86,28 @@ export const deleteStudy = (studyId) => async (dispatch) => {
 
 
 }
+
+export const addTutoring = (tutoringInfo) => async(dispatch) => {
+
+    const config = {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+
+    const body = JSON.stringify({
+        tutoringInfo
+    });
+
+    try {
+        
+        const res = await axios.post('http://localhost:3000/api/tutorings',body,config)
+        dispatch({
+            type: 'ADD_TUTORING_SUCCESS',
+            payload: res.data
+        })
+        dispatch(setAlert('success', 'Tutoring successfully added'))
+    } catch (err) {
+        console.log(err);
+    }
+}

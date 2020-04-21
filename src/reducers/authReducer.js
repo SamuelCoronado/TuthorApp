@@ -53,6 +53,11 @@ export default function(state = initialState, action){
                 ...state,
                 user: {...state.user, studies: [...payload]}
             }
+        case 'ADD_TUTORING_SUCCESS':
+            return{
+                ...state,
+                user: {...state.user.user, userTutorings:[...state.user.userTutorings, payload] }
+            }
         default:
             return state
     }
