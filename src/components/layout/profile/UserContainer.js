@@ -11,8 +11,6 @@ export const UserContainer = () => {
 
     const {userId} = useParams();
 
-   
-
     useEffect(() => {  
         const getUserProfile = async(userId) => {
             try {            

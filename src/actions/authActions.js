@@ -76,3 +76,32 @@ export const register = ({
         })
     }
 }
+
+export const login = (email, password) => async (dispatch) => {
+    const config = {
+        headers:{
+            "Content-Type": "application/json"
+        }
+    }
+
+    const body = JSON.stringify({email, password});
+
+    try {
+        const res = await axios.post('http://localhost:3000/api/auth', body, config);
+        console.log(res.data);
+        
+         dispatch({
+            type: 'LOGIN_SUCCESS',
+            payload: res.data
+        })
+        dispatch(loadUser())
+    } catch (err) {
+        console.log(err);
+         if(err.response.data.errors != undefined){
+            err.response.data.errors.forEach(err => dispatch(setAlert(err.msg, "danger")));    
+        }  
+        dispatch({
+          type: 'LOGIN_FAIL'
+        });
+    }
+}
