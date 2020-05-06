@@ -3,6 +3,18 @@ import {connect} from 'react-redux';
 import {addSession} from '../../../actions/sessionActions'
 
 const Hour = ({hour, location, selectedLocation, available, addSession, sessions }) => {
+
+
+    const handleAgendButton = (e) => {
+        e.preventDefault();
+        if(selectedLocation === ''){
+            document.getElementById('location').focus();
+            alert('First you have to select a location');
+            return;
+        }
+        addSession(hour, selectedLocation, sessions);
+    }
+
     return(
         <>
     {
@@ -11,7 +23,7 @@ const Hour = ({hour, location, selectedLocation, available, addSession, sessions
             <div className="col">{hour}</div>
             <div className="col"></div>
             <div className="col">Available</div>
-            <div className="col"> <button className="btn btn-primary" onClick={(e) => addSession(hour, selectedLocation, sessions)}>Agend</button></div>
+            <div className="col"> <button className="btn btn-primary" onClick={(e) => handleAgendButton(e)}>Agend</button></div>
         </div>
     :
         <div className="row p-2 bg-danger text-white rounded text-center mb-3">

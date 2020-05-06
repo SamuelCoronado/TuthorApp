@@ -148,7 +148,7 @@ const NewSession = ({user, location, getTutoringInfo, tutoring, disabledDates, s
                 <div className="row">
                 <div className="col-md-6">
                     <div className="form-group">
-                    <label htmlFor="location">Location</label>
+                    <label htmlFor="location">Location (i.e. Calle Revolucion #123, Guanajuato)</label>
                     <input type="text" className="form-control" value={location} id="location" placeholder="Location" readOnly/> 
                     <div className="mt-3">
                         or <button onClick={(e) => onClick(e)} className="btn btn-primary">Select</button>
