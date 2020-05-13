@@ -123,7 +123,7 @@ export const addSession = (hours, location, sessions) => (dispatch) => {
     })
 }
 
-export const createTutoringSession = ({tutoringId, studentId, tutorId, amountToPay, location, selectedHoursArray, date}) => async(dispatch) => {
+export const createTutoringSession = ({tutoringId, studentId, sessionName, tutorName, description, tags, tutorId, amountToPay, location, selectedHoursArray, date}) => async(dispatch) => {
     const config = {
         headers:{
             "Content-Type": "application/json"
@@ -134,6 +134,10 @@ export const createTutoringSession = ({tutoringId, studentId, tutorId, amountToP
     
     const body = JSON.stringify({
         tutoring: tutoringId,
+        sessionName,
+        tutorName,
+        description,
+        tags,
         student: studentId,
         tutor: tutorId,
         totalPrice: amountToPay, 
@@ -160,4 +164,12 @@ export const createTutoringSession = ({tutoringId, studentId, tutorId, amountToP
         console.log(err);
         
     }
+}
+
+export const updateSessionsToTake = (sessions) => (dispatch) => {
+    dispatch({
+        type: 'UPDATE_SESSIONS_TO_TAKE',
+        payload: sessions
+    })
+    dispatch(setAlert('success','Opinion submited. Session was moved to your record'))
 }

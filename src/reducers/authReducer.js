@@ -58,6 +58,11 @@ export default function(state = initialState, action){
                 ...state,
                 user: {...state.user.user, userTutorings:[...state.user.userTutorings, payload] }
             }
+        case 'UPDATE_SESSIONS_TO_TAKE':
+            return{
+                ...state,
+                user: {...state.user.user, sessions:{sessionsToGive:[...state.user.sessions.sessionsToGive], sessionsToTake:[...payload]}}
+            }
         default:
             return state
     }

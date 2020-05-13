@@ -37,8 +37,14 @@ export const UserContainer = () => {
         birthdate,
         studies,
         about,
-        opinions
+        opinionsAsStudent,
+        opinionsAsTutor
     } = user
+
+    const generalComments = {
+        opinionsAsStudent,
+        opinionsAsTutor
+    }
 
     console.log(user);
     
@@ -53,7 +59,7 @@ export const UserContainer = () => {
             <div className="container p-4">
                 <div className="row">
                     <StudiesContainer studies={studies} isUserProfile={true}/>
-                    <InfoContainer about={about} comments={opinions} isUserProfile={true} />
+                    <InfoContainer about={about} comments={generalComments} isUserProfile={true} />
                 </div>
             </div>
 

@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React from 'react'
+import {Link} from 'react-router-dom';
 
 const Tutoring = (props) => {
 
@@ -11,10 +12,11 @@ const Tutoring = (props) => {
         days,
         from,
         to,
-        description
+        description,
+        _id
     } = props.tutoringInfo
 
-
+    const tutoringId = _id
 
     return (
         <div className="card">
@@ -35,7 +37,7 @@ const Tutoring = (props) => {
                 tags.map((tag) => <span className={`text-white mx-1 rounded p-1 bg-${colors[Math.floor(Math.random() * colors.length)]}`}>{tag}</span>)
               }
           </div>
-          
+          <Link to={`/tutoring/${tutoringId}/newSession`} className="btn btn-primary btn-block">Agend tutoring</Link>
         </div>
       </div>
     )

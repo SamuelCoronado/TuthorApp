@@ -18,9 +18,14 @@ const ProfileContainer = ({user}) => {
         birthdate,
         studies,
         about,
-        opinions
+        opinionsAsStudent,
+        opinionsAsTutor
     } = user.user
-    console.log(user);
+   
+    const generalComments = {
+        opinionsAsStudent,
+        opinionsAsTutor
+    }
     
     
 
@@ -33,7 +38,7 @@ const ProfileContainer = ({user}) => {
             <div className="container p-4">
                 <div className="row">
                     <StudiesContainer studies={studies} />
-                    <InfoContainer about={about} comments={opinions} />
+                    <InfoContainer about={about} comments={generalComments} />
                 </div>
             </div>
 

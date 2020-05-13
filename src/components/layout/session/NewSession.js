@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from 'react'
+import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import DatePicker from 'react-datepicker'
 import Map from '../Map';
 import Loading from '../Loading';
@@ -15,6 +13,8 @@ import SelectedHour from './SelectedHour'
 import "react-datepicker/dist/react-datepicker.css";
 
 const NewSession = ({user, location, getTutoringInfo, tutoring, disabledDates, setSessionsToFalse, setSessions, sessions, selectedSessions, amountToPay, createTutoringSession}) => {
+
+    const {tutoringId} = useParams();
 
     /* const [newSessionData, setNewSessionData] = useState({
         tutoring: tutoring == null? null: tutoring._id,
@@ -26,7 +26,6 @@ const NewSession = ({user, location, getTutoringInfo, tutoring, disabledDates, s
 
     const [show, setShow] = useState(false);
 
-
     const onClick = (e) => {
         e.preventDefault();
         setShow(true)
@@ -35,7 +34,7 @@ const NewSession = ({user, location, getTutoringInfo, tutoring, disabledDates, s
     useEffect(() => {
         const getTutoringData = async() => {
             try {
-                getTutoringInfo('5e9cb1bb932a9e042e647f6c');
+                getTutoringInfo(tutoringId);
             } catch (err) {
                 console.log(err);
                 
@@ -68,10 +67,15 @@ const NewSession = ({user, location, getTutoringInfo, tutoring, disabledDates, s
                 setSessions([...tutoringHours])
                 return;
             }
+
+            if(sessions.length === tutoringHours.length){
+                setSessions([...sessions]);
+                return;
+            }
             
             tutoringHours.forEach((tutoringHour) => {  
                 let item = tutoringHour; 
-                 sessions.forEach((session, index) => {  
+                 sessions.forEach((session) => {  
                     if(session.hours.includes(tutoringHour)){ 
                       item = {...session}
                       item.hours = tutoringHour
@@ -85,8 +89,7 @@ const NewSession = ({user, location, getTutoringInfo, tutoring, disabledDates, s
         const getSessions = async(tutorId, date) => {
             
             setSessionsToFalse();
-            const res = await axios.get('http://localhost:3000/api/tutorings/'+'5e9cb1bb932a9e042e647f6c'+'/sessions',{params:{tutor: tutorId, date:date.toDateString()}});
-            console.log(res.data); 
+            const res = await axios.get('http://localhost:3000/api/tutorings/'+tutoringId+'/sessions',{params:{tutor: tutorId, date:date.toDateString()}});
             getFinishedSchedule(hours,res.data)
         }
 
@@ -97,14 +100,16 @@ const NewSession = ({user, location, getTutoringInfo, tutoring, disabledDates, s
             await createTutoringSession({
                 tutoringId: tutoring._id,
                 studentId: user.user._id,
+                sessionName: signature,
+                tutorName: name,
+                description: description,
+                tags: tags,
                 tutorId: _id, 
                 amountToPay,
                 location,
                 selectedHoursArray: selectedSessions.map((session) => session.hours),
                 date: startDate.toDateString()
             });
-            console.log('dasdsa');
-            
             await getSessions(_id,startDate)
 
         }

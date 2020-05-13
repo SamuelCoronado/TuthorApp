@@ -1,11 +1,17 @@
 import React from 'react'
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import {connect} from 'react-redux';
 /* import Badge from '@material-ui/core/Badge'
 import MailIcon from '@material-ui/icons/Mail'
  */
+import {setSearchTerm, getTutorings} from '../../actions/searchActions';
 
-const Navbar = ({isAuthenticated}) => {
+const Navbar = ({isAuthenticated, setSearchTerm, searchTerm, getTutorings}) => {
+
+    const location = useLocation()
+    console.log(location.pathname.split('/').includes('search'));
+    
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container collapse navbar-collapse" id="navbarColor01">
@@ -22,10 +28,15 @@ const Navbar = ({isAuthenticated}) => {
                     </li>
                 </ul>
                 <div className="mx-auto">
-                    <form className="form-inline">
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style={{width: '400px'}} />
-                        <button className="btn btn-outline-info my-2 my-sm-0" type="submit">Search tutoring</button>
-                    </form>     
+                    <div className="form-inline">
+                        <input className="form-control mr-sm-2" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} type="search" placeholder="Search" aria-label="Search" style={{width: '400px'}} />
+                        {
+                            location.pathname.split('/').includes('search') ?
+                            <button  onClick={() => getTutorings(searchTerm)} className="btn btn-outline-info my-2 my-sm-0">Search tutoring</button>
+                            :
+                            <Link onClick={() => getTutorings(searchTerm)} to={'/search'} className="btn btn-outline-info my-2 my-sm-0">Search tutoring</Link>
+                        }    
+                   </div>     
                 </div> 
                 <ul className="nav navbar-nav pull-sm-right">
                     <li className="nav-item">
@@ -53,7 +64,9 @@ const Navbar = ({isAuthenticated}) => {
 }
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: state.authReducer.isAuthenticated
+    isAuthenticated: state.authReducer.isAuthenticated,
+    tutorings: state.searchReducer.tutorings,
+    searchTerm: state.searchReducer.searchTerm
 })
 
-export default connect(mapStateToProps, null)(Navbar)
+export default connect(mapStateToProps, {setSearchTerm,getTutorings})(Navbar)

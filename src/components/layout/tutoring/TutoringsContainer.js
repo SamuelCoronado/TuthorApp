@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Tutoring from './Tutoring';
 import {connect} from 'react-redux';
 
-const getChunks = (array) => {
+export const getChunks = (array) => {
     const chunks = [];
     let start = 0;
     let finish = 3
@@ -30,15 +30,14 @@ const TutoringsContainer = ({user}) => {
            getChunks(user.userTutorings)
             .map((array) => {
                return(
-               <div className="row">
-                   {array.map((tutoring) => <div className="col-md-4"><Tutoring tutoringInfo={tutoring}/></div>)}
+               <div className="row my-4">
+                   {array.map((tutoring) => <div className="col-md-4 mb-3"><Tutoring tutoringInfo={tutoring}/></div>)}
                </div>
                )
            })
            }
            </div>
        }
-        <h1>dsadas</h1>
        </>
     )
 }

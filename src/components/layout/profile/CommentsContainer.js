@@ -1,27 +1,58 @@
 import React from 'react'
-import Comment from './Comment';
+import {StudentComment} from './Comment';
+import {TutorComment} from './Comment';
 
 const CommentsContainer = ({comments}) => {
     return (
-        <div className="container row">
+        <>
+         <div className="container row">
             <h4>Recent comments</h4>
             {
-                comments.length === 0 ?
+                comments.opinionsAsTutor.length === 0 && comments.opinionsAsStudent.length === 0 ?
                 <div className="container">
                     <h4>There are not comments</h4>
                 </div>
                 :
-                <div style={{maxHeight: '400px', overflow: 'scroll'}}>
-                    {
-                        comments.map((comment) => {
-                            return(
-                                <Comment profileImage={comment.profileImage} name={comment.user.name} comment={comment.opinion} date={comment.date}/>
-                            )
-                        })
+                    <>
+                    {comments.opinionsAsTutor.length > 0 && 
+                        <div style={{maxHeight: '200px', overflow: 'scroll'}}>
+                            <h4 className="text-left">As tutor </h4>
+                            {comments.opinionsAsTutor.map((opinion) => 
+                                <StudentComment 
+                                    profileImage={opinion.profileImage} 
+                                    student={opinion.student}
+                                    studentName={opinion.studentName}
+                                    session={opinion.session}
+                                    sessionName={opinion.sessionName}
+                                    opinion={opinion.opinion}
+                                    rating={opinion.rating}
+                                    date={opinion.date}     
+                                />
+                                )}
+                        </div>
                     }
-                </div>
+                    <br/>
+                    {comments.opinionsAsStudent.length > 0 && 
+                        <div style={{maxHeight: '200px', overflow: 'scroll'}}>
+                            <h4 className="text-left">As tutor </h4>
+                            {comments.opinionsAsStudent.map((opinion) => 
+                                <TutorComment 
+                                    profileImage={opinion.profileImage} 
+                                    tutor={opinion.tutor}
+                                    tutorName={opinion.tutorName}
+                                    session={opinion.session}
+                                    sessionName={opinion.sessionName}
+                                    opinion={opinion.opinion}
+                                    rating={opinion.rating}
+                                    date={opinion.date}     
+                                />
+                                )}
+                        </div>
+                    }
+                    </>
             }
-        </div>
+         </div>
+        </>
     )
 }
 
