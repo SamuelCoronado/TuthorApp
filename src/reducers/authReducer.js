@@ -41,27 +41,38 @@ export default function(state = initialState, action){
             
             return{
                 ...state,
-                user: {...state.user, about: payload.about}
+                user: {...state.user, user:{...state.user.user, about: payload.about}}
             }
         case 'ADD_STUDY_SUCCESS':
             return{
                 ...state,
-                user: {...state.user, studies: [...payload]}
+                user: {...state.user, user:{...state.user.user, studies: [...payload]}}
             }
         case 'DELETE_STUDY_SUCCESS':
             return{
                 ...state,
-                user: {...state.user, studies: [...payload]}
+                user: {...state.user, user:{...state.user.user, studies:[...payload]}}
             }
         case 'ADD_TUTORING_SUCCESS':
             return{
                 ...state,
-                user: {...state.user.user, userTutorings:[...state.user.userTutorings, payload] }
+                user: {...state.user, userTutorings:[...state.user.userTutorings, payload] }
             }
         case 'UPDATE_SESSIONS_TO_TAKE':
             return{
                 ...state,
-                user: {...state.user.user, sessions:{sessionsToGive:[...state.user.sessions.sessionsToGive], sessionsToTake:[...payload]}}
+                user: {...state.user, sessions:{sessionsToGive:[...state.user.sessions.sessionsToGive], sessionsToTake:[...payload]}}
+            }
+        case 'UPDATE_SESSIONS_TO_GIVE':{
+            return{
+                ...state,
+                user: {...state.user, sessions:{sessionsToGive:[...payload], sessionsToTake:[...state.user.sessions.sessionsToTake]}}
+            }
+        }
+        case 'SET_PROFILE_IMAGE':
+            return{
+                ...state,
+                user: {...state.user, user:{...state.user.user, profileImage: payload}}
             }
         default:
             return state

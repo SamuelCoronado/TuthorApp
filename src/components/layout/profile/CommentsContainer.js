@@ -34,7 +34,7 @@ const CommentsContainer = ({comments}) => {
                     <br/>
                     {comments.opinionsAsStudent.length > 0 && 
                         <div style={{maxHeight: '200px', overflow: 'scroll'}}>
-                            <h4 className="text-left">As tutor </h4>
+                            <h4 className="text-left">As student </h4>
                             {comments.opinionsAsStudent.map((opinion) => 
                                 <TutorComment 
                                     profileImage={opinion.profileImage} 

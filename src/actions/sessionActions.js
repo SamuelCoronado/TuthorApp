@@ -123,7 +123,7 @@ export const addSession = (hours, location, sessions) => (dispatch) => {
     })
 }
 
-export const createTutoringSession = ({tutoringId, studentId, sessionName, tutorName, description, tags, tutorId, amountToPay, location, selectedHoursArray, date}) => async(dispatch) => {
+export const createTutoringSession = ({tutoringId, studentId, sessionName, tutorName, studentName, profileImage, description, tags, tutorId, amountToPay, location, selectedHoursArray, date}) => async(dispatch) => {
     const config = {
         headers:{
             "Content-Type": "application/json"
@@ -136,7 +136,9 @@ export const createTutoringSession = ({tutoringId, studentId, sessionName, tutor
         tutoring: tutoringId,
         sessionName,
         tutorName,
+        studentName,
         description,
+        profileImage,
         tags,
         student: studentId,
         tutor: tutorId,
@@ -169,6 +171,14 @@ export const createTutoringSession = ({tutoringId, studentId, sessionName, tutor
 export const updateSessionsToTake = (sessions) => (dispatch) => {
     dispatch({
         type: 'UPDATE_SESSIONS_TO_TAKE',
+        payload: sessions
+    })
+    dispatch(setAlert('success','Opinion submited. Session was moved to your record'))
+}
+
+export const updateSessionsToGive = (sessions) => (dispatch) => {
+    dispatch({
+        type: 'UPDATE_SESSIONS_TO_GIVE',
         payload: sessions
     })
     dispatch(setAlert('success','Opinion submited. Session was moved to your record'))

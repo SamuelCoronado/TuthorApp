@@ -130,44 +130,44 @@ const NewTutoring = ({addTutoring}) => {
               <div className="col">
                 <p>Days you are available</p>
                 <div className="form-check">
-                  <input className="form-check-input" type="checkbox" defaultValue="monday" name="days" id="monday" onChange = {(e) => onChange(e)} />
-                  <label className="form-check-label" htmlFor="monday">
+                  <input className="form-check-input" type="checkbox" defaultValue="Mon" name="days" id="Mon" onChange = {(e) => onChange(e)} />
+                  <label className="form-check-label" htmlFor="Mon">
                     Monday
                   </label>
                 </div>
                 <div className="form-check">
-                  <input className="form-check-input" type="checkbox" defaultValue="tuesday" name="days" id="tuesday" onChange = {(e) => onChange(e)} />
-                  <label className="form-check-label" htmlFor="tuesday">
+                  <input className="form-check-input" type="checkbox" defaultValue="Tue" name="days" id="Tue" onChange = {(e) => onChange(e)} />
+                  <label className="form-check-label" htmlFor="Tue">
                     Tuesday
                   </label>
                 </div>
                 <div className="form-check">
-                  <input className="form-check-input" type="checkbox" defaultValue="wednesday" name="days" id="wednesday" onChange = {(e) => onChange(e)}/>
-                  <label className="form-check-label" htmlFor="wednesday">
+                  <input className="form-check-input" type="checkbox" defaultValue="Wed" name="days" id="Wed" onChange = {(e) => onChange(e)}/>
+                  <label className="form-check-label" htmlFor="Wed">
                     Wednesday
                   </label>
                 </div>
                 <div className="form-check">
-                  <input className="form-check-input" type="checkbox" defaultValue="thursday" name="days" id="thursday" onChange = {(e) => onChange(e)}/>
-                  <label className="form-check-label" htmlFor="thursday">
+                  <input className="form-check-input" type="checkbox" defaultValue="Thu" name="days" id="Thu" onChange = {(e) => onChange(e)}/>
+                  <label className="form-check-label" htmlFor="Thu">
                     Thursday
                   </label>
                 </div>
                 <div className="form-check">
-                  <input className="form-check-input" type="checkbox" defaultValue="friday" name="days" id="friday" onChange = {(e) => onChange(e)}/>
-                  <label className="form-check-label" htmlFor="friday">
+                  <input className="form-check-input" type="checkbox" defaultValue="Fri" name="days" id="Fri" onChange = {(e) => onChange(e)}/>
+                  <label className="form-check-label" htmlFor="Fri">
                     Friday
                   </label>
                 </div>
                 <div className="form-check">
-                  <input className="form-check-input" type="checkbox" defaultValue="saturday" name="days" id="saturday" onChange = {(e) => onChange(e)}/>
-                  <label className="form-check-label" htmlFor="saturday">
+                  <input className="form-check-input" type="checkbox" defaultValue="Sat" name="days" id="Sat" onChange = {(e) => onChange(e)}/>
+                  <label className="form-check-label" htmlFor="Sat">
                     Saturday
                   </label>
                 </div>
                 <div className="form-check">
-                  <input className="form-check-input" type="checkbox" defaultValue="sunday" name="days" id="sunday" onChange = {(e) => onChange(e)}/>
-                  <label className="form-check-label" htmlFor="sunday">
+                  <input className="form-check-input" type="checkbox" defaultValue="Sun" name="days" id="Sun" onChange = {(e) => onChange(e)}/>
+                  <label className="form-check-label" htmlFor="Sun">
                     Sunday
                   </label>
                 </div>

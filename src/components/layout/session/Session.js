@@ -7,7 +7,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Rating from '@material-ui/lab/Rating'
-import {updateSessionsToTake} from '../../../actions/sessionActions';
+import {updateSessionsToTake, updateSessionsToGive} from '../../../actions/sessionActions';
 
 const Session = (props) => {
 
@@ -19,12 +19,21 @@ const Session = (props) => {
         description,
         tags,
         student,
+        studentName,
         tutor,
         totalPrice,
         location,
         hours,
         date,
       } = props.sessionInfo;
+
+
+      const {updateSessionsToTake, updateSessionsToGive} = props
+      const {toTake} = props
+      const {userImage} = props
+
+      console.log(userImage);
+      
   
     const colors = [
     "primary",
@@ -35,7 +44,7 @@ const Session = (props) => {
     "dark",
   ];
 
-  const {updateSessionsToTake} = props
+ 
 
   const [formData, setFormData] = useState({
     opinion: '',
@@ -67,6 +76,7 @@ const Session = (props) => {
   const body = JSON.stringify({
       tutor,
       session: _id,
+      profileImage: userImage,
       sessionName,
       opinion: formData.opinion,
       rating: formData.rating
@@ -90,6 +100,43 @@ const Session = (props) => {
 
 }
 
+const submitTutorOpinion = async(e) => {
+  e.preventDefault();
+  
+  const config = {
+    headers:{
+        "Content-Type": "application/json"
+    }
+  }
+
+  const body = JSON.stringify({
+    student,
+    session:_id,
+    profileImage: userImage,
+    sessionName,
+    opinion: formData.opinion,
+    rating: formData.rating
+  })
+
+  try {
+
+    const res = await axios.post('http://localhost:3000/api/users/'+student+'/opinionsAsStudent', body, config);
+    console.log(res.data);
+    updateSessionsToGive(res.data)
+    setFormData({
+      opinion: '',
+      rating: 0
+  })
+  handleClose()
+
+    
+  } catch (err) {
+    console.log(err);
+    
+  }
+}
+
+
   return (
     <>
       <Modal show={show} onHide={handleClose} animation={true}>
@@ -97,10 +144,12 @@ const Session = (props) => {
           <Modal.Title>Leave an opinion for {sessionName} session</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={(e) => submitStudentOpinion(e)}>
+          {
+            toTake?
+            <Form onSubmit={(e) => submitStudentOpinion(e)}>
             <Form.Group controlId="Write your opinion">
               <Form.Label>Your opinion</Form.Label>
-              <Form.Control as="textarea" rows="3" placeholder="Description" onChange={(e) => setFormData({...formData, opinion: e.target.value})}/>
+              <Form.Control as="textarea" rows="3" placeholder="Write your opinion" onChange={(e) => setFormData({...formData, opinion: e.target.value})}/>
             </Form.Group>
             <p>Rating</p>
             <Rating name="stars" value={formData.rating} precision={1} onChange={(e) => handleRating(e)} /> <br/><br/>
@@ -108,6 +157,19 @@ const Session = (props) => {
               Submit
             </Button>
           </Form>
+          :
+          <Form onSubmit={(e) => submitTutorOpinion(e)}>
+            <Form.Group controlId="Write your opinion">
+              <Form.Label>Your opinion</Form.Label>
+              <Form.Control as="textarea" rows="3" placeholder="Write your opinion" onChange={(e) => setFormData({...formData, opinion: e.target.value})}/>
+            </Form.Group>
+            <p>Rating</p>
+            <Rating name="stars" value={formData.rating} precision={1} onChange={(e) => handleRating(e)} /> <br/><br/>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+          }
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -120,16 +182,28 @@ const Session = (props) => {
           {sessionName} session
         </div>
         <div className="card-body">
-          <p className="text-left">
-            With {tutorName} &nbsp;&nbsp;&nbsp;&nbsp; at {location}
-          </p>
+            {
+              toTake?
+              <p>With {tutorName}</p>
+              :
+              <p>With {studentName}</p>
+            }
+            <p>at {location}</p>
           <p>{new Date(date).toDateString()}</p>
           <p>Schedule:</p>
           {hours.map((hour) => (
-            <h5 className="p-2 bg-info text-center">{hour}</h5>
+            <h5 className="p-2 bg-info text-center text-white">{hour}</h5>
           ))}
-          <p className="card-text">{description}</p>
-          <p className="card-text">To pay: ${totalPrice}</p>
+          {
+            toTake && <p className="card-text">{description}</p>
+          }
+          {
+            toTake?
+            <p className="card-text">To pay: ${totalPrice}</p>
+            :
+            <p className="card-text">To be paid: ${totalPrice}</p>
+          }
+          
           <div className="mb-3">
             {tags.map((tag) => (
               <span
@@ -141,7 +215,7 @@ const Session = (props) => {
               </span>
             ))}
           </div>
-         {/*  {new Date(Date.now()) > new Date(date) ? (
+          {/* {new Date(Date.now()) > new Date(date) ? (
             <button
               className="btn btn-block btn-primary"
               onClick={(e) => handleShow()}
@@ -152,15 +226,14 @@ const Session = (props) => {
             <button className="btn btn-block btn-primary" disabled>
               Leave an opinion
             </button>
-          )} */}
-           <button
-              className="btn btn-block btn-primary"
-              onClick={(e) => handleShow(e)}
-            >Leave an opinion</button>
+          )}  */}
+          <button className="btn btn-block btn-primary" onClick={(e) => handleShow(e)}>
+              Leave an opinion
+          </button>
         </div>
       </div>
     </>
   );
 };
 
-export default connect(null,{updateSessionsToTake})(Session);
+export default connect(null,{updateSessionsToTake, updateSessionsToGive})(Session);

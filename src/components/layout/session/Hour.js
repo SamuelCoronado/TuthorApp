@@ -3,8 +3,7 @@ import {connect} from 'react-redux';
 import {addSession} from '../../../actions/sessionActions'
 
 const Hour = ({hour, location, selectedLocation, available, addSession, sessions }) => {
-
-
+    
     const handleAgendButton = (e) => {
         e.preventDefault();
         if(selectedLocation === ''){

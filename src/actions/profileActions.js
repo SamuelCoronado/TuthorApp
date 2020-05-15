@@ -27,6 +27,32 @@ export const setAboutInfo = (info) => async (dispatch) =>{
     }
 }
 
+export const setProfileImage = (file) => async(dispatch) => {
+
+    const config = {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    }
+
+    const formData = new FormData();
+    formData.append('image', file)
+
+    try {
+        
+        const res = await axios.post('http://localhost:3000/api/users/image-upload', formData, config)
+        console.log(res.data);
+        dispatch({
+            type: 'SET_PROFILE_IMAGE',
+            payload: res.data.profileImage
+        })
+
+    } catch (err) {
+        console.log(err);
+        
+    }
+}
+
 export const addStudy = (newStudyInfo) => async (dispatch) => {
 
     const config = {

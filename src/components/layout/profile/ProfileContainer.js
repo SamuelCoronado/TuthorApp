@@ -19,7 +19,8 @@ const ProfileContainer = ({user}) => {
         studies,
         about,
         opinionsAsStudent,
-        opinionsAsTutor
+        opinionsAsTutor,
+        profileImage
     } = user.user
    
     const generalComments = {
@@ -31,7 +32,7 @@ const ProfileContainer = ({user}) => {
 
     return (
         <>
-            <MainInfo name={name} state={state} city={city} rating={rating} birthdate={birthdate} />
+            <MainInfo name={name} state={state} city={city} rating={rating} birthdate={birthdate} profileImage={profileImage} />
             <div className="container">
              <hr />
             </div>

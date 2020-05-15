@@ -56,6 +56,7 @@ const NewSession = ({user, location, getTutoringInfo, tutoring, disabledDates, s
             to,
             description
         } = tutoring
+
         
         const {name, _id} = tutoring.tutor
 
@@ -100,6 +101,8 @@ const NewSession = ({user, location, getTutoringInfo, tutoring, disabledDates, s
             await createTutoringSession({
                 tutoringId: tutoring._id,
                 studentId: user.user._id,
+                studentName: user.user.name,
+                profileImage: user.user.profileImage,
                 sessionName: signature,
                 tutorName: name,
                 description: description,
