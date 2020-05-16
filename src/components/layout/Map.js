@@ -6,7 +6,7 @@ import LocationIcon from './location_icon.png'
 
 const MapContainer = ({viewport, getCurrentPosition, updateMarker, zoomIn, zoomOut,setViewport,updateLocation}) => {
 
-    const [width, setWidth] = useState((window.innerWidth <= 990) || ( window.screen.width <= 990) ? '300px': '700px');
+    const [width, setWidth] = useState((window.innerWidth <= 990) || ( window.screen.width <= 990) ? '290px': '700px');
     const [height, setHeight] = useState(window.innerHeight <=650 ? '440px': '400px');
 
     console.log(window.screen.width < 990);
@@ -15,7 +15,7 @@ const MapContainer = ({viewport, getCurrentPosition, updateMarker, zoomIn, zoomO
 
         if(window.screen.width <=990 || window.innerWidth <= 990){
             console.log('hihi');
-            setWidth('300px');
+            setWidth('290px');
             setHeight('440px');
             console.log(width, height);
             
