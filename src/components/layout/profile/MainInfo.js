@@ -15,14 +15,17 @@ const MainInfo = ({name, city, state, rating, birthdate, profileImage, setProfil
     }
 
     const onSubmit = async(e) => {
-      setProfileImage(file)
+      e.preventDefault()
+      await setProfileImage(file)
+      /* window.location.reload();
+      return false */
     }
 
     return (
         <div className="container p-4">
           <div className="row">
             <div className="col-md-3">
-              <img src={`http://localhost:3000/images/${profileImage}`} style={{width: '250px', height: '250px'}} alt="" />
+              <img src={`https://tuthor-app.herokuapp.com/images/${profileImage}`} style={{width: '250px', height: '250px'}} alt="" />
               <form className="mt-3" onSubmit={(e) => onSubmit(e)}>
                 <div className="custom-file">
                   <input type="file" className="custom-file-input" name="image" onChange={(e) => onChange(e)}/>

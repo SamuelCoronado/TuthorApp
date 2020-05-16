@@ -16,7 +16,7 @@ export const StudentComment = ({profileImage, student, studentName, session, ses
     return (
         <div className="card my-3" style={{width: '800px'}}>
         <div className="card-body">
-          <img src={`http://localhost:3000/images/${profileImage}`} style={{width: '50px', height: '50px'}} className="rounded float-left" alt="" />
+          <img src={`https://tuthor-app.herokuapp.com/images/${profileImage}`} style={{width: '50px', height: '50px'}} className="rounded float-left" alt="" />
           <p>&nbsp;<strong>{studentName}</strong>&nbsp;  {days === 0? 'today': days === 1? 'a day ago': `${days} days ago` }</p><br />
           <p>&nbsp;<strong>{sessionName}</strong>&nbsp; <Rating name="stars" value={rating} precision={1} readOnly/></p>
           <p className="p-2 border border-white rounded">{opinion}</p>
@@ -32,7 +32,7 @@ export const TutorComment = ({profileImage, tutor, tutorName, session, sessionNa
   return (
     <div className="card my-3" style={{width: '800px'}}>
     <div className="card-body">
-      <img src={`http://localhost:3000/images/${profileImage}`} style={{width: '50px', height: '50px'}} className="rounded float-left" alt="" />
+      <img src={`https://tuthor-app.herokuapp.com/images/${profileImage}`} style={{width: '50px', height: '50px'}} className="rounded float-left" alt="" />
       <p>&nbsp;<strong>{tutorName}</strong>&nbsp;  {days === 0? 'today': days === 1? 'a day ago': `${days} ago` }</p><br />
       <p>&nbsp;<strong>{sessionName}</strong>&nbsp; <Rating name="stars" value={rating} precision={1} readOnly/></p>
       <p className="p-2 border border-white rounded">{opinion}</p>

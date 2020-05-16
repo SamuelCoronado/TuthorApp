@@ -85,7 +85,7 @@ const Session = (props) => {
   console.log(body);
   try {
         
-    const res = await axios.post('http://localhost:3000/api/users/'+tutor+'/opinionsAsTutor', body, config);
+    const res = await axios.post('https://tuthor-app.herokuapp.com/api/users/'+tutor+'/opinionsAsTutor', body, config);
     updateSessionsToTake(res.data)
     setFormData({
         opinion: '',
@@ -120,7 +120,7 @@ const submitTutorOpinion = async(e) => {
 
   try {
 
-    const res = await axios.post('http://localhost:3000/api/users/'+student+'/opinionsAsStudent', body, config);
+    const res = await axios.post('https://tuthor-app.herokuapp.com/api/users/'+student+'/opinionsAsStudent', body, config);
     console.log(res.data);
     updateSessionsToGive(res.data)
     setFormData({

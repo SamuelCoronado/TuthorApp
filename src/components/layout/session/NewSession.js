@@ -90,7 +90,7 @@ const NewSession = ({user, location, getTutoringInfo, tutoring, disabledDates, s
         const getSessions = async(tutorId, date) => {
             
             setSessionsToFalse();
-            const res = await axios.get('http://localhost:3000/api/tutorings/'+tutoringId+'/sessions',{params:{tutor: tutorId, date:date.toDateString()}});
+            const res = await axios.get('https://tuthor-app.herokuapp.com/api/tutorings/'+tutoringId+'/sessions',{params:{tutor: tutorId, date:date.toDateString()}});
             getFinishedSchedule(hours,res.data)
         }
 

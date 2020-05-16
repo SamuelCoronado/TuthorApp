@@ -67,7 +67,7 @@ export const getTutoringInfo = (tutoringId) => async(dispatch) => {
     try {
         console.log('entra');
         
-        const response = await axios.get('http://localhost:3000/api/tutorings/'+tutoringId);
+        const response = await axios.get('https://tuthor-app.herokuapp.com/api/tutorings/'+tutoringId);
         dispatch({
             type: 'GET_TUTORING_INFO',
             payload: response.data
@@ -152,9 +152,11 @@ export const createTutoringSession = ({tutoringId, studentId, sessionName, tutor
     
     try {
         
-        const res = await axios.post('http://localhost:3000/api/tutorings/'+tutoringId+'/session', body, config);
+        const res = await axios.post('https://tuthor-app.herokuapp.com/api/tutorings/'+tutoringId+'/session', body, config);
+        console.log(res.data);
         dispatch({
-            type: 'CREATE_TUTORING_SESSION_SUCCESS'
+            type: 'CREATE_TUTORING_SESSION_SUCCESS',
+            payload: res.data
         })
         dispatch(setAlert('success', 'Session successfully created!'))
 

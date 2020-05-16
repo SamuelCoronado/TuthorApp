@@ -14,7 +14,7 @@ export const UserContainer = () => {
     useEffect(() => {  
         const getUserProfile = async(userId) => {
             try {            
-                const res = await axios.get('http://localhost:3000/api/users/'+userId);
+                const res = await axios.get('https://tuthor-app.herokuapp.com/api/users/'+userId);
                 setUser((res.data))
                 
             } catch (err) {

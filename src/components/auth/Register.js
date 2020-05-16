@@ -24,7 +24,7 @@ const Register = ({setAlert, register, isAuthenticated}) => {
     const [emailError, setEmailError] = useState(null);
 
     const getEmails = async() => {
-        const res = await axios.get('http://localhost:3000/api/users/emails');
+        const res = await axios.get('https://tuthor-app.herokuapp.com/api/users/emails');
         return res.data
     }
 

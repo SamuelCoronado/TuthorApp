@@ -1,14 +1,16 @@
 import React from 'react'
-import {Link, useLocation} from 'react-router-dom';
+import {Link, useLocation, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import {logout} from '../../actions/authActions';
 /* import Badge from '@material-ui/core/Badge'
 import MailIcon from '@material-ui/icons/Mail'
  */
 import {setSearchTerm, getTutorings} from '../../actions/searchActions';
 
-const NavbarCustom = ({isAuthenticated, setSearchTerm, searchTerm, getTutorings}) => {
+const NavbarCustom = ({isAuthenticated, setSearchTerm, searchTerm, getTutorings, logout}) => {
 
     const location = useLocation()
     return (
@@ -17,28 +19,35 @@ const NavbarCustom = ({isAuthenticated, setSearchTerm, searchTerm, getTutorings}
             <Navbar.Collapse id="basic-navbar-nav">
             {
                 isAuthenticated?
+                <>
                 <Nav className="mr-auto">
-                    <Nav.Link><Link className="nav-link" to="#">Tutorings</Link></Nav.Link>
-                    <Nav.Link><Link className="nav-link" to="#">Sessions</Link></Nav.Link>
-                    <Nav.Link><Link className="nav-link" to="#">Profile</Link></Nav.Link>
-                    <Nav.Link><Link className="nav-link" to="#">Logout</Link></Nav.Link>
+                    <Nav.Link><Link className="nav-link" to="">Tutorings</Link></Nav.Link>
+                    <NavDropdown title="Tutorings" id="basic-dropdown">
+                        <NavDropdown.Item><Link className="nav-link" to="/profile/tutorings">My tutorings</Link></NavDropdown.Item>
+                        <NavDropdown.Item><Link className="nav-link" to="/newTutoring">Create tutoring</Link></NavDropdown.Item>
+                    </NavDropdown>
+                    <Nav.Link><Link className="nav-link" to="/profile/sessions">Sessions</Link></Nav.Link>
+                    <Nav.Link><Link className="nav-link" to="/profile">Profile</Link></Nav.Link>
+                    <Nav.Link><Link className="nav-link" onClick={() => logout()} to="#">Logout</Link></Nav.Link>
                 </Nav>
+                <div className="form-inline my-2 my-lg-0">
+                 <input className="form-control mr-sm-2" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} type="search" placeholder="Search" aria-label="Search"/>
+                 {
+                      location.pathname.split('/').includes('search') ?
+                      <button  onClick={() => getTutorings(searchTerm)} className="btn btn-outline-info my-2 my-sm-0">Search tutoring</button>
+                      :
+                      <Link onClick={() => getTutorings(searchTerm)} to={'/search'} className="btn btn-outline-info my-2 my-sm-0">Search tutoring</Link>
+                 }
+                </div>
+                </>
                 :
                 <Nav className="mr-auto">
-                     <Nav.Link><Link className="nav-link" to="#">Profile</Link></Nav.Link>
-                    <Nav.Link><Link className="nav-link" to="#">Logout</Link></Nav.Link>
+                    <Nav.Link><Link className="nav-link" to="/register">Register</Link></Nav.Link>
+                    <Nav.Link><Link className="nav-link" to="/login">Login</Link></Nav.Link>
                 </Nav>
                 
             }
-            <div className="form-inline my-2 my-lg-0">
-             <input className="form-control mr-sm-2" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} type="search" placeholder="Search" aria-label="Search"/>
-             {
-                  location.pathname.split('/').includes('search') ?
-                  <button  onClick={() => getTutorings(searchTerm)} className="btn btn-outline-info my-2 my-sm-0">Search tutoring</button>
-                  :
-                  <Link onClick={() => getTutorings(searchTerm)} to={'/search'} className="btn btn-outline-info my-2 my-sm-0">Search tutoring</Link>
-             }
-            </div>
+           
             </Navbar.Collapse>
         </Navbar>
       /*   <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -94,4 +103,4 @@ const mapStateToProps = (state) => ({
     searchTerm: state.searchReducer.searchTerm
 })
 
-export default connect(mapStateToProps, {setSearchTerm,getTutorings})(NavbarCustom)
+export default connect(mapStateToProps, {setSearchTerm, getTutorings, logout})(NavbarCustom)

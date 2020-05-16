@@ -4,7 +4,7 @@ export const getTutorings = (searchTerm) => async(dispatch) => {
 
     try {    
         const res = await  axios.get(
-            "http://localhost:3000/api/tutorings/search/"+searchTerm
+            "https://tuthor-app.herokuapp.com/api/tutorings/search/"+searchTerm
         );
         dispatch({
             type: 'GET_TUTORINGS',

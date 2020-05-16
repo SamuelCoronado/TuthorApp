@@ -13,6 +13,7 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import store from './store';
 import {loadUser} from './actions/authActions';
+import {connect} from 'react-redux'
 import './App.css';
 
 /* if(localStorage.token){
@@ -21,7 +22,7 @@ import './App.css';
   delete axios.defaults.headers.commmon['x-auth-token']
 } */
 
-function App() {
+function App({isAuthenticated}) {
 
    useEffect(() => {
     store.dispatch(loadUser());
@@ -44,8 +45,17 @@ function App() {
           <UserContainer />
         </Route>
       </Switch>
+      {
+        isAuthenticated? null
+        :
+        <Redirect to="/login" />
+      }
     </Router>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.authReducer.isAuthenticated
+})
+
+export default connect(mapStateToProps, null)(App)

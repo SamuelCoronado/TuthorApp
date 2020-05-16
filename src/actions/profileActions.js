@@ -15,7 +15,7 @@ export const setAboutInfo = (info) => async (dispatch) =>{
 
     try {
         
-        const res = await axios.put('http://localhost:3000/api/users/about',body, config);
+        const res = await axios.put('https://tuthor-app.herokuapp.com/api/users/about',body, config);
         dispatch({
             type: 'SET_ABOUT_SUCCESS',
             payload: res.data
@@ -40,12 +40,14 @@ export const setProfileImage = (file) => async(dispatch) => {
 
     try {
         
-        const res = await axios.post('http://localhost:3000/api/users/image-upload', formData, config)
+        const res = await axios.post('https://tuthor-app.herokuapp.com/api/users/image-upload', formData, config)
         console.log(res.data);
         dispatch({
             type: 'SET_PROFILE_IMAGE',
             payload: res.data.profileImage
         })
+        window.location.reload();
+        return false
 
     } catch (err) {
         console.log(err);
@@ -71,7 +73,7 @@ export const addStudy = (newStudyInfo) => async (dispatch) => {
 
     try {
         
-        const res = await axios.put('http://localhost:3000/api/users/studies',body, config);
+        const res = await axios.put('https://tuthor-app.herokuapp.com/api/users/studies',body, config);
         console.log(res.data.studies);
         dispatch({
             type: 'ADD_STUDY_SUCCESS',
@@ -97,7 +99,7 @@ export const deleteStudy = (studyId) => async (dispatch) => {
 
     try {
 
-        const res = await axios.delete('http://localhost:3000/api/users/studies/'+studyId,config);
+        const res = await axios.delete('https://tuthor-app.herokuapp.com/api/users/studies/'+studyId,config);
         dispatch({
             type: 'DELETE_STUDY_SUCCESS',
             payload: res.data.studies
@@ -127,7 +129,7 @@ export const addTutoring = (tutoringInfo) => async(dispatch) => {
 
     try {
         
-        const res = await axios.post('http://localhost:3000/api/tutorings',body,config)
+        const res = await axios.post('https://tuthor-app.herokuapp.com/api/tutorings',body,config)
         dispatch({
             type: 'ADD_TUTORING_SUCCESS',
             payload: res.data
