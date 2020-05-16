@@ -6,16 +6,16 @@ import LocationIcon from './location_icon.png'
 
 const MapContainer = ({viewport, getCurrentPosition, updateMarker, zoomIn, zoomOut,setViewport,updateLocation}) => {
 
-    const [width, setWidth] = useState(window.innerWidth <= 500 ? '390px': '700px');
-    const [height, setHeight] = useState(window.innerHeight <=600 ? '440px': '400px');
+    const [width, setWidth] = useState((window.innerWidth <= 990) || ( window.screen.width <= 990) ? '300px': '700px');
+    const [height, setHeight] = useState(window.innerHeight <=650 ? '440px': '400px');
 
-    console.log('entro en este momento');
+    console.log(window.screen.width < 990);
 
     const changeSize = () => {
 
-        if((window.innerWidth <= 500 || window.outerWidth <= 500) && (window.innerHeight <= 600 || window.outerHeight <= 600)){
+        if(window.screen.width <=990 || window.innerWidth <= 990){
             console.log('hihi');
-            setWidth('390px');
+            setWidth('300px');
             setHeight('440px');
             console.log(width, height);
             
