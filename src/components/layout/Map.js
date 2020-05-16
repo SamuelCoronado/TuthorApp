@@ -5,6 +5,9 @@ import {getCurrentPosition, updateMarker, zoomIn, zoomOut, setViewport, updateLo
 import LocationIcon from './location_icon.png'
 
 const MapContainer = ({viewport, getCurrentPosition, updateMarker, zoomIn, zoomOut,setViewport,updateLocation}) => {
+
+    console.log('entro en este momento');
+    
     
    /*  const [viewport, setViewport] = useState({
             width: "100vw",
@@ -17,9 +20,10 @@ const MapContainer = ({viewport, getCurrentPosition, updateMarker, zoomIn, zoomO
  */
 
     useEffect(() => {
-        getCurrentPosition()
-        console.log(viewport);
-        
+        const getCurrentPositionFunction = async() => {
+            await getCurrentPosition();
+        }
+        getCurrentPositionFunction()
     }, []) 
 
     const onClick = (e) => { 
