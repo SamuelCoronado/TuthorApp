@@ -6,8 +6,29 @@ import LocationIcon from './location_icon.png'
 
 const MapContainer = ({viewport, getCurrentPosition, updateMarker, zoomIn, zoomOut,setViewport,updateLocation}) => {
 
+    const [width, setWidth] = useState(window.innerWidth <= 500 ? '390px': '700px');
+    const [height, setHeight] = useState(window.innerHeight <=600 ? '440px': '400px');
+
     console.log('entro en este momento');
+
+    const changeSize = () => {
+
+        if((window.innerWidth <= 500 || window.outerWidth <= 500) && (window.innerHeight <= 600 || window.outerHeight <= 600)){
+            console.log('hihi');
+            setWidth('390px');
+            setHeight('440px');
+            console.log(width, height);
+            
+        }else{
+            setWidth('700px');
+            setHeight('400px')
+        }
+        console.log('dasdas');
+        
+       
+    }
     
+    window.onresize = changeSize;
     
    /*  const [viewport, setViewport] = useState({
             width: "100vw",
@@ -41,8 +62,8 @@ const MapContainer = ({viewport, getCurrentPosition, updateMarker, zoomIn, zoomO
                 null
                 :
                 <ReactMapGL {...viewport}
-                width="700px"
-                height="300px"
+                width={width}
+                height={height}
                  mapStyle="mapbox://styles/mapbox/outdoors-v11"
                  mapboxApiAccessToken="pk.eyJ1Ijoic2FtdWVsY29yb25hZG8iLCJhIjoiY2p4MjZiMzAwMDR2djQzcHlyNWs2MXNjdiJ9.wbogdv9262vjvpvif6mvIQ"
                  onClick={(e) => onClick(e)}
