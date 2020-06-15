@@ -59,15 +59,20 @@ export default function(state = initialState, action){
                 user: {...state.user, userTutorings:[...state.user.userTutorings, payload] }
             }
         case 'UPDATE_SESSIONS_TO_TAKE':
-        case 'CREATE_TUTORING_SESSION_SUCCESS':
             return{
                 ...state,
-                user: {...state.user, sessions:{sessionsToGive:[...state.user.sessions.sessionsToGive], sessionsToTake:[...payload]}}
+                user: {...state.user, sessions:{sessionsToGive:[...state.user.sessions.sessionsToGive], sessionsToTake:[...payload.updatedSessions], takenSessions: [...payload.takenSessions], givenSessions:[...state.user.sessions.givenSessions]}}
+            }
+        case 'CREATE_TUTORING_SESSION_SUCCESS':
+            console.log('huhu');  
+            return{
+                ...state,
+                user: {...state.user, sessions:{sessionsToGive:[...state.user.sessions.sessionsToGive], sessionsToTake:[...payload], takenSessions:[...state.user.sessions.takenSessions], givenSessions:[...state.user.sessions.givenSessions]}}
             }
         case 'UPDATE_SESSIONS_TO_GIVE':{
             return{
                 ...state,
-                user: {...state.user, sessions:{sessionsToGive:[...payload], sessionsToTake:[...state.user.sessions.sessionsToTake]}}
+                user: {...state.user, sessions:{sessionsToGive:[...payload.updatedSessions], sessionsToTake:[...state.user.sessions.sessionsToTake], givenSessions:[...payload.givenSessions], takenSessions:[...state.user.sessions.takenSessions]}}
             }
         }
         case 'SET_PROFILE_IMAGE':

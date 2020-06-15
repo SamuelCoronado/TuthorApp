@@ -41,12 +41,13 @@ export const setProfileImage = (file) => async(dispatch) => {
     try {
         
         const res = await axios.post('https://tuthor-app.herokuapp.com/api/users/image-upload', formData, config)
-        console.log(res.data);
-        dispatch({
+        
+      /*   dispatch({
             type: 'SET_PROFILE_IMAGE',
             payload: res.data.profileImage
-        })
+        }) */
         window.location.reload();
+        console.log(res.data);
         return false
 
     } catch (err) {

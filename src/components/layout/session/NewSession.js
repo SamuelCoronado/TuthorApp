@@ -91,6 +91,7 @@ const NewSession = ({user, location, getTutoringInfo, tutoring, disabledDates, s
             
             setSessionsToFalse();
             const res = await axios.get('https://tuthor-app.herokuapp.com/api/tutorings/'+tutoringId+'/sessions',{params:{tutor: tutorId, date:date.toDateString()}});
+            console.log(res);
             getFinishedSchedule(hours,res.data)
         }
 
@@ -157,7 +158,7 @@ const NewSession = ({user, location, getTutoringInfo, tutoring, disabledDates, s
                 <div className="col-md-6">
                     <div className="form-group">
                     <label htmlFor="location">Location (i.e. Calle Revolucion #123, Guanajuato)</label>
-                    <input type="text" className="form-control" value={location} id="location" placeholder="Location" readOnly/> 
+                    <input type="text" className="form-control" value={location} id="location" placeholder="Location"/> 
                     <div className="mt-3">
                         or <button onClick={(e) => onClick(e)} className="btn btn-primary">Select</button>
                     </div> 

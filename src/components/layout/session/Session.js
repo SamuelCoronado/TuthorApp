@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useLocation} from 'react-router-dom';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import Modal from "react-bootstrap/Modal";
@@ -7,9 +8,14 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Rating from '@material-ui/lab/Rating'
+import {getDays} from '../profile/Comment';
 import {updateSessionsToTake, updateSessionsToGive} from '../../../actions/sessionActions';
 
 const Session = (props) => {
+
+ 
+
+  const path = useLocation().pathname.split('/')[3];
 
     const {
         tutoring,
@@ -25,6 +31,8 @@ const Session = (props) => {
         location,
         hours,
         date,
+        ratedByTutor,
+        ratedByStudent
       } = props.sessionInfo;
 
 
@@ -90,7 +98,7 @@ const Session = (props) => {
     setFormData({
         opinion: '',
         rating: 0
-    })
+    });
     handleClose()
 
 
@@ -178,33 +186,36 @@ const submitTutorOpinion = async(e) => {
         </Modal.Footer>
       </Modal>
       <div className="card">
-        <div className="card-header bg-dark text-white mt-2 mx-2">
+        <div className="card-header bg-dark text-white text-center mt-2 mx-2">
           {sessionName} session
         </div>
         <div className="card-body">
             {
               toTake?
-              <p>With {tutorName}</p>
+              <h5 className="text-center font-weight-bold">With {tutorName}</h5>
               :
-              <p>With {studentName}</p>
+              <p className="text-center font-weight-bold">With {studentName}</p>
             }
-            <p>at {location}</p>
-          <p>{new Date(date).toDateString()}</p>
+            <p className="text-center font-weight-bold" >at {location}</p>
+          <p className="text-center font-weight-bold">{new Date(date).toDateString()}</p>
           <p>Schedule:</p>
           {hours.map((hour) => (
             <h5 className="p-2 bg-info text-center text-white">{hour}</h5>
           ))}
+          <br/>
           {
-            toTake && <p className="card-text">{description}</p>
+            toTake && <p className="card-text text-secondary mb-3">{description}</p>
           }
           {
             toTake?
-            <p className="card-text">To pay: ${totalPrice}</p>
+            <p className="card-text text-center font-weight-bold mb-3">To pay: <span className="text-white p-2 bg-success rounded">${totalPrice}</span></p>
             :
-            <p className="card-text">To be paid: ${totalPrice}</p>
+            <p className="card-text text-center font-weight-bold mb-3">To be paid: <span className="text-white p-2 bg-success rounded">${totalPrice}</span></p>
           }
-          
-          <div className="mb-3">
+
+          {
+            toTake?
+            <div className="mb-3">
             {tags.map((tag) => (
               <span
                 className={`text-white mx-1 rounded p-1 bg-${
@@ -215,6 +226,12 @@ const submitTutorOpinion = async(e) => {
               </span>
             ))}
           </div>
+          :
+            null
+          }
+
+          
+          
           {/* {new Date(Date.now()) > new Date(date) ? (
             <button
               className="btn btn-block btn-primary"
@@ -227,9 +244,22 @@ const submitTutorOpinion = async(e) => {
               Leave an opinion
             </button>
           )}  */}
-          <button className="btn btn-block btn-primary" onClick={(e) => handleShow(e)}>
+          {
+            path === 'active' ?
+            new Date(Date.now()) < new Date(date) ?
+            (
+            <button className="btn btn-block btn-danger" disabled>
+              in {getDays(date)} day(s)
+            </button>
+            )
+            :
+            <button className="btn btn-block btn-primary" onClick={(e) => handleShow(e)}>
               Leave an opinion
-          </button>
+            </button>
+            :
+            null  
+          }
+         
         </div>
       </div>
     </>

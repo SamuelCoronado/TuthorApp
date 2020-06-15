@@ -170,12 +170,18 @@ export const createTutoringSession = ({tutoringId, studentId, sessionName, tutor
     }
 }
 
-export const updateSessionsToTake = (sessions) => (dispatch) => {
-    dispatch({
-        type: 'UPDATE_SESSIONS_TO_TAKE',
-        payload: sessions
-    })
-    dispatch(setAlert('success','Opinion submited. Session was moved to your record'))
+export const updateSessionsToTake = (sessions) => async(dispatch) => {
+    try {
+        dispatch({
+            type: 'UPDATE_SESSIONS_TO_TAKE',
+            payload: sessions
+        });
+        dispatch(setAlert('success','Opinion submited. Session was moved to your record'))
+    } catch (err) {
+        console.log(err);
+    }
+    
+    
 }
 
 export const updateSessionsToGive = (sessions) => (dispatch) => {
@@ -183,5 +189,6 @@ export const updateSessionsToGive = (sessions) => (dispatch) => {
         type: 'UPDATE_SESSIONS_TO_GIVE',
         payload: sessions
     })
+
     dispatch(setAlert('success','Opinion submited. Session was moved to your record'))
 }

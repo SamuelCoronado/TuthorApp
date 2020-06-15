@@ -35,11 +35,10 @@ const MainInfo = ({name, city, state, rating, birthdate, profileImage, setProfil
               </form>
             </div>
             <div className="col-md-9">
-              <p>{name}</p>
-              <p>{city}, {state}</p>
-              <p>{rating}</p>
-              <p>{new Date(birthdate).toLocaleString()}</p>
-              <button className="btn btn-primary">Send message</button> &nbsp;
+              <p className="font-weight-bold">{name}</p>
+              <p className="font-weight-bold">{city}, {state}</p>
+              {/* <p>{rating}</p> */}
+              <p className="font-weight-bold">{new Date(Date.now()).getFullYear() - new Date(birthdate).getFullYear()} years</p>
               <button className="btn btn-primary">View active tutorings</button>
             </div>
           </div>

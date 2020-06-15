@@ -8,6 +8,7 @@ import NewTutoring from './components/layout/tutoring/NewTutoring';
 import TutoringsContainer from './components/layout/tutoring/TutoringsContainer';
 import NewSession from './components/layout/session/NewSession';
 import SessionsContainer from './components/layout/session/SessionsContainer';
+import RecordContainer from './components/layout/session/RecordContainer';
 import {UserContainer} from './components/layout/profile/UserContainer';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
@@ -39,7 +40,8 @@ function App({isAuthenticated}) {
         <Route exact path="/profile/tutorings" component={TutoringsContainer} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/profile/sessions" component={SessionsContainer} />
+        <Route exact path="/profile/sessions/active" component={SessionsContainer} />
+        <Route exact path="/profile/sessions/record" component={RecordContainer} />
         <Route exact path="/profile" component={ProfileContainer} />
         <Route exact path="/users/:userId">
           <UserContainer />

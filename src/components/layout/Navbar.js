@@ -14,19 +14,23 @@ const NavbarCustom = ({isAuthenticated, setSearchTerm, searchTerm, getTutorings,
 
     const location = useLocation()
     return (
-        <Navbar bg="dark" expand="lg">
+        <Navbar bg="dark" expand="lg" variant="dark">
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">
             {
                 isAuthenticated?
                 <>
                 <Nav className="mr-auto">
-                    <Nav.Link><Link className="nav-link" to="">Tutorings</Link></Nav.Link>
                     <NavDropdown title="Tutorings" id="basic-dropdown">
-                        <NavDropdown.Item><Link className="nav-link" to="/profile/tutorings">My tutorings</Link></NavDropdown.Item>
-                        <NavDropdown.Item><Link className="nav-link" to="/newTutoring">Create tutoring</Link></NavDropdown.Item>
+                        <NavDropdown.Item><Link className="nav-link text-dark" to="/profile/tutorings">My tutorings</Link></NavDropdown.Item>
+                        <NavDropdown.Item><Link className="nav-link text-dark" to="/newTutoring">Create tutoring</Link></NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link><Link className="nav-link" to="/profile/sessions">Sessions</Link></Nav.Link>
+                    <NavDropdown title="Sessions" id="basic-dropdown2">
+                        <NavDropdown.Item><Link className="nav-link text-dark" to="/profile/sessions/active">Active</Link></NavDropdown.Item>
+                        <NavDropdown.Item><Link className="nav-link text-dark" to="/profile/sessions/record">Record</Link></NavDropdown.Item>
+                    </NavDropdown>
+                    
+                    {/* <Nav.Link><Link className="nav-link" to="/profile/sessions/active">Sessions</Link></Nav.Link> */}
                     <Nav.Link><Link className="nav-link" to="/profile">Profile</Link></Nav.Link>
                     <Nav.Link><Link className="nav-link" onClick={() => logout()} to="#">Logout</Link></Nav.Link>
                 </Nav>
