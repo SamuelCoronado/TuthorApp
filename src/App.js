@@ -12,6 +12,7 @@ import RecordContainer from './components/layout/session/RecordContainer';
 import {UserContainer} from './components/layout/profile/UserContainer';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import HowToUse from './components/layout/HowToUse';
 import store from './store';
 import {loadUser} from './actions/authActions';
 import {connect} from 'react-redux'
@@ -40,6 +41,7 @@ function App({isAuthenticated}) {
         <Route exact path="/profile/tutorings" component={TutoringsContainer} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/howToUse" component={HowToUse} />
         <Route exact path="/profile/sessions/active" component={SessionsContainer} />
         <Route exact path="/profile/sessions/record" component={RecordContainer} />
         <Route exact path="/profile" component={ProfileContainer} />

@@ -30,7 +30,7 @@ const Tutoring = (props) => {
                 days.map((day) => <li>{day}</li>)
               }
           </ul>
-            <p>from: {from} &nbsp;&nbsp;&nbsp;&nbsp; to: {to}</p>
+            <p><i class="far fa-clock"></i> from: {from} &nbsp;&nbsp;&nbsp;&nbsp; to: {to}</p>
             <p className="card-text">{description}</p>
           <div className="mb-3">
               {

@@ -40,7 +40,9 @@ export const setProfileImage = (file) => async(dispatch) => {
 
     try {
         
-        const res = await axios.post('https://tuthor-app.herokuapp.com/api/users/image-upload', formData, config)
+        const res = await axios.post('https://tuthor-app.herokuapp.com/api/users/image-upload', formData, config);
+        console.log(res.data);
+        
         
       /*   dispatch({
             type: 'SET_PROFILE_IMAGE',

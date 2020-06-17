@@ -33,6 +33,7 @@ const NavbarCustom = ({isAuthenticated, setSearchTerm, searchTerm, getTutorings,
                     {/* <Nav.Link><Link className="nav-link" to="/profile/sessions/active">Sessions</Link></Nav.Link> */}
                     <Nav.Link><Link className="nav-link" to="/profile">Profile</Link></Nav.Link>
                     <Nav.Link><Link className="nav-link" onClick={() => logout()} to="#">Logout</Link></Nav.Link>
+                    <Nav.Link><Link className="nav-link" to="/howToUse">HowToUse</Link></Nav.Link>
                 </Nav>
                 <div className="form-inline my-2 my-lg-0">
                  <input className="form-control mr-sm-2" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} type="search" placeholder="Search" aria-label="Search"/>
@@ -48,6 +49,7 @@ const NavbarCustom = ({isAuthenticated, setSearchTerm, searchTerm, getTutorings,
                 <Nav className="mr-auto">
                     <Nav.Link><Link className="nav-link" to="/register">Register</Link></Nav.Link>
                     <Nav.Link><Link className="nav-link" to="/login">Login</Link></Nav.Link>
+                    <Nav.Link><Link className="nav-link" to="/howToUse">HowToUse</Link></Nav.Link>
                 </Nav>
                 
             }
