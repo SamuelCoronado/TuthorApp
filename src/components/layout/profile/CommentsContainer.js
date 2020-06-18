@@ -6,7 +6,7 @@ const CommentsContainer = ({comments}) => {
     return (
         <>
          <div className="container row">
-            <h4>Recent comments</h4>
+            <h4>Recent comments <i className="fas fa-comments"></i></h4>
             {
                 comments.opinionsAsTutor.length === 0 && comments.opinionsAsStudent.length === 0 ?
                 <div className="container">
@@ -16,7 +16,7 @@ const CommentsContainer = ({comments}) => {
                     <>
                     {comments.opinionsAsTutor.length > 0 && 
                         <div style={{maxHeight: '200px', overflow: 'scroll'}}>
-                            <h4 className="text-left">As tutor </h4>
+                            <h4 className="text-left">As tutor <i className="fas fa-chalkboard-teacher"></i></h4>
                             {comments.opinionsAsTutor.map((opinion) => 
                                 <StudentComment 
                                     profileImage={opinion.profileImage} 

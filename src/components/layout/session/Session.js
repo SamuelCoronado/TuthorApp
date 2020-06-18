@@ -185,22 +185,33 @@ const submitTutorOpinion = async(e) => {
           </Button>
         </Modal.Footer>
       </Modal>
-      <div className="card">
-        <div className="card-header bg-dark text-white text-center mt-2 mx-2">
+      <div className="card rounded">
+        <div className="card-header text-white text-center mt-2 mx-2" style={{backgroundColor: '#275DAD'}}>
           {sessionName} session
         </div>
         <div className="card-body">
+          <h3 className="text-center">
+            <i className="fas fa-user"></i>
+          </h3>
             {
               toTake?
-              <h5 className="text-center font-weight-bold">With {tutorName}</h5>
+              <h5 className="text-center font-weight-bold"> {tutorName}</h5>
               :
-              <p className="text-center font-weight-bold">With {studentName}</p>
+              <p className="text-center font-weight-bold"> {studentName}</p>
             }
-            <p className="text-center font-weight-bold" >at {location}</p>
-          <p className="text-center font-weight-bold">{new Date(date).toDateString()}</p>
-          <p>Schedule:</p>
+            <h3 className="text-center">
+            <i className="fas fa-map-marker-alt"></i>
+            </h3>
+            <p className="text-center font-weight-bold" > {location}</p>
+            <h3 className="text-center">
+              <i className="fas fa-calendar-day"></i>
+            </h3>
+          <p className="text-center font-weight-bold"> {new Date(date).toDateString()}</p>
+            <h3 className="text-center">
+              <i className="fas fa-clock"></i>
+            </h3>
           {hours.map((hour) => (
-            <h5 className="p-2 bg-info text-center text-white">{hour}</h5>
+            <h5 className="p-2 border border-info text-center rounded">{hour}</h5>
           ))}
           <br/>
           {
@@ -208,9 +219,15 @@ const submitTutorOpinion = async(e) => {
           }
           {
             toTake?
-            <p className="card-text text-center font-weight-bold mb-3">To pay: <span className="text-white p-2 bg-success rounded">${totalPrice}</span></p>
+            path === 'active' ?
+            <p className="card-text text-center font-weight-bold mb-3">To pay: <span className="p-2 border border-success rounded">${totalPrice}</span></p>
             :
-            <p className="card-text text-center font-weight-bold mb-3">To be paid: <span className="text-white p-2 bg-success rounded">${totalPrice}</span></p>
+            <p className="card-text text-center font-weight-bold mb-3">You paid: <span className="p-2 border border-success rounded">${totalPrice}</span></p>
+            :
+            path === 'active' ?
+            <p className="card-text text-center font-weight-bold mb-3">To be paid: <span className="p-2 border border-success rounded">${totalPrice}</span></p>
+            :
+            <p className="card-text text-center font-weight-bold mb-3">Paid: <span className="p-2 border border-success rounded">${totalPrice}</span></p>
           }
 
           {
@@ -253,7 +270,7 @@ const submitTutorOpinion = async(e) => {
             </button>
             )
             :
-            <button className="btn btn-block btn-primary" onClick={(e) => handleShow(e)}>
+            <button className="btn btn-block btn-info" onClick={(e) => handleShow(e)}>
               Leave an opinion
             </button>
             :

@@ -24,11 +24,10 @@ export const loadUser = () => async (dispatch) => {
         
 
     }catch(err){
-        console.log(err);
-        
         dispatch({
             type: 'AUTH_ERROR'
         })
+        dispatch(setAlert('danger', err.msg))
     }
 }
 

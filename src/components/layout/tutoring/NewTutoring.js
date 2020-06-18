@@ -108,8 +108,8 @@ const NewTutoring = ({addTutoring}) => {
     return (
         <>
         <div className="container">
-          <h2 className="text-info">
-            Add Tutoring
+          <h2 className="text-info text-center">
+            Add Tutoring <i class="fas fa-plus-circle"></i>
           </h2>
           <hr />
         </div>
@@ -192,7 +192,7 @@ const NewTutoring = ({addTutoring}) => {
                       </ul>
                       :null
                   }
-                  <button className="btn btn-primary" value={tag} onClick={(e) => onClick(e)}>Add</button>
+                  <button className="btn btn-info" value={tag} onClick={(e) => onClick(e)}>Add</button>
                 </div>
                 <div className={classes.container}  onSubmit={(e) => (console.log)}>
       <TextField
@@ -211,7 +211,7 @@ const NewTutoring = ({addTutoring}) => {
       />
       <TextField
         id="time2"
-        label="to"
+        label="to (select this one first)"
         type="time"
         value={secondTime}
         onChange = {(e) => handleSecondTime(e)}
@@ -227,7 +227,7 @@ const NewTutoring = ({addTutoring}) => {
               </div>
             </div> 
             <br />
-            <button type="submit" className="btn btn-primary btn-block">Create tutoring</button>
+            <button type="submit" className="btn btn-info btn-block">Create tutoring</button>
           </form>
         </div>
       </>

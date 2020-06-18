@@ -21,7 +21,7 @@ const About = ({about, isUserProfile, setAboutInfo}) => {
 
     return (
         <div className="container mb-5 row">
-         <h4>About me</h4>
+         <h4>About me <i class="fas fa-address-card"></i></h4>
          <br /><br />
          {
              about?

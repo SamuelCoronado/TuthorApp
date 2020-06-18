@@ -11,7 +11,7 @@ const RecordContainer = ({user}) => {
           null
           :
           <div className="container">
-              <h4 className="text-center bg-success p-2 text-white rounded">
+              <h4 className="text-center p-2 rounded">
                   Taken sessions
               </h4>
               <hr/>
@@ -29,7 +29,7 @@ const RecordContainer = ({user}) => {
                   <h3 className="text-center">You have not taken any session</h3>
               }
               <br/>
-              <h4 className="text-center bg-success p-2 text-white rounded">
+              <h4 className="text-center p-2 rounded">
                   Given sessions
               </h4>
               <hr/>

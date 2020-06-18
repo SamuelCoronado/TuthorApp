@@ -2,12 +2,12 @@ import React from 'react'
 
 const Study = ({signature, isUserProfile, institute, period, description, id, deleteStudy}) => {
     return (
-        <div className="card text-white bg-secondary mb-3">
+        <div className="card text-white mb-3" style={{backgroundColor: '#84a9ac'}}>
             <div className="card-header">{signature} course</div>
             <div className="card-body">
-            <p className="card-text">Taken in: {institute} </p>
-            <p className="card-text">{period} </p>
-            <p className="card-text">{description} </p>
+            <p className="card-text"><i class="fas fa-school"></i> Taken in: {institute} </p>
+            <p className="card-text"><i class="fas fa-user-clock"></i> {period} </p>
+            <p className="card-text border border-white p-1 rounded">{description} </p>
             {
                 isUserProfile? null
                 :

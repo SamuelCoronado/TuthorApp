@@ -105,12 +105,12 @@ const StudiesContainer = ({studies, isUserProfile, addStudy,deleteStudy}) => {
         </Modal.Footer>
       </Modal>
         <div className="col-md-3 border-right border-secundary">
-            <h3 className="text-center">Studies</h3>
+            <h3 className="text-center">Studies <i class="fas fa-book-reader"></i></h3>
             {
                 studies.length === 0 ?
                 isUserProfile? <p>This user has no info about his studies</p>
                 :
-                <button className="btn btn-block btn-primary" onClick={handleShow}>Add a study</button>
+                <button className="btn btn-info btn-block" onClick={handleShow}>Add a study</button>
                 :
                 studies.length === 3 ?
                 studies.map((study) => {
@@ -128,7 +128,7 @@ const StudiesContainer = ({studies, isUserProfile, addStudy,deleteStudy}) => {
                                 {
                                     isUserProfile? null
                                     :
-                                    <button className="btn btn-block btn-primary" onClick={handleShow}>Add a study</button>
+                                    <button className="btn btn-block btn-info" onClick={handleShow}>Add a study</button>
                                 }
                                 
                             </>
@@ -142,7 +142,7 @@ const StudiesContainer = ({studies, isUserProfile, addStudy,deleteStudy}) => {
                 
             }
             
-            
+        <br/>
       </div>
       </>
     )

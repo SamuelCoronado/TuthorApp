@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {BrowserRouter as Router,Route, Redirect, Switch} from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import SearchContainer from './components/layout/SearchContainer';
@@ -12,6 +12,7 @@ import RecordContainer from './components/layout/session/RecordContainer';
 import {UserContainer} from './components/layout/profile/UserContainer';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import Loading from './components/layout/Loading'
 import HowToUse from './components/layout/HowToUse';
 import store from './store';
 import {loadUser} from './actions/authActions';
@@ -28,7 +29,9 @@ function App({isAuthenticated}) {
 
    useEffect(() => {
     store.dispatch(loadUser());
+    
   },[]) 
+  
 
   return (
     <Router>
@@ -50,8 +53,13 @@ function App({isAuthenticated}) {
         </Route>
       </Switch>
       {
-        isAuthenticated? null
+        isAuthenticated === null ? <Loading height={200} width={200} />
         :
+        isAuthenticated === true ? <Redirect to="/profile" />
+        :
+        /* isAuthenticated === true ? null 
+        :
+        <Redirect to="/login" /> */
         <Redirect to="/login" />
       }
     </Router>

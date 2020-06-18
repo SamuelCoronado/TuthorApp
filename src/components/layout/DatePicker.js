@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TimePickers() {
 
-  const [firstTime, setFirstTime] = useState('07:00');
+  const [firstTime, setFirstTime] = useState('08:00');
   console.log(firstTime)
-  const [secondTime, setSecondTime] = useState(firstTime);
+  const [secondTime, setSecondTime] = useState(firstTime+1);
   const classes = useStyles();
 
   const handleSecondTime = (e) => {

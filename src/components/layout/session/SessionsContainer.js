@@ -11,7 +11,7 @@ const SessionsContainer = ({user}) => {
             null
             :
             <div className="container">
-                <h4 className="text-center bg-success p-2 text-white rounded">Sessions to take</h4>
+                <h4 className="text-center p-2 rounded">Sessions to take</h4>
                 <hr/>
                 {
                     user.sessions.sessionsToTake.length > 0?
@@ -27,7 +27,7 @@ const SessionsContainer = ({user}) => {
                     <h3>You have no sessions to take</h3>
                 }
                 <br/>
-                <h4 className="text-center bg-success p-2 text-white rounded">Sessions to give</h4>
+                <h4 className="text-center p-2 rounded">Sessions to give</h4>
                 <hr/>
                 {
                     user.sessions.sessionsToGive.length > 0?
