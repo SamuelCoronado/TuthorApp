@@ -11,12 +11,15 @@ export const UserContainer = () => {
 
     const {userId} = useParams();
 
+    console.log(user);
+    
+
     useEffect(() => {  
         const getUserProfile = async(userId) => {
+            setUser(null);
             try {            
                 const res = await axios.get('https://tuthor-app.herokuapp.com/api/users/'+userId);
                 setUser((res.data))
-                
             } catch (err) {
                 console.log(err);
             }
@@ -25,7 +28,7 @@ export const UserContainer = () => {
         getUserProfile(userId)
         
 
-    }, [])
+    }, [userId])
 
     if(user == null) return null
 
@@ -38,7 +41,8 @@ export const UserContainer = () => {
         studies,
         about,
         opinionsAsStudent,
-        opinionsAsTutor
+        opinionsAsTutor,
+        _id
     } = user
 
     const generalComments = {
@@ -46,13 +50,9 @@ export const UserContainer = () => {
         opinionsAsTutor
     }
 
-    console.log(user);
-    
-
-
     return (
         <>
-            <MainInfo name={name} state={state} city={city} rating={rating} birthdate={birthdate} />
+            <MainInfo name={name} state={state} city={city} rating={rating} birthdate={birthdate} id={_id} />
             <div className="container">
              <hr />
             </div>

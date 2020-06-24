@@ -10,10 +10,12 @@ import NewSession from './components/layout/session/NewSession';
 import SessionsContainer from './components/layout/session/SessionsContainer';
 import RecordContainer from './components/layout/session/RecordContainer';
 import {UserContainer} from './components/layout/profile/UserContainer';
+import UserTutorings from './components/layout/profile/UserTutorings';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Loading from './components/layout/Loading'
 import HowToUse from './components/layout/HowToUse';
+import Footer from './components/layout/Footer';
 import store from './store';
 import {loadUser} from './actions/authActions';
 import {connect} from 'react-redux'
@@ -36,6 +38,16 @@ function App({isAuthenticated}) {
   return (
     <Router>
       <Navbar/>
+      {
+        isAuthenticated === null ? <Loading height={200} width={200} />
+        :
+        isAuthenticated === true ? <Redirect to="/profile" />
+        :
+        /* isAuthenticated === true ? null 
+        :
+        <Redirect to="/login" /> */
+        <Redirect to="/login" />
+      }
       <AlertComponent/>
       <Switch>
         <Route exact path="/tutoring/:tutoringId/newSession" component={NewSession} />
@@ -48,20 +60,12 @@ function App({isAuthenticated}) {
         <Route exact path="/profile/sessions/active" component={SessionsContainer} />
         <Route exact path="/profile/sessions/record" component={RecordContainer} />
         <Route exact path="/profile" component={ProfileContainer} />
+        <Route exact path="/user/:userId/tutorings" component={UserTutorings} />
         <Route exact path="/users/:userId">
           <UserContainer />
         </Route>
       </Switch>
-      {
-        isAuthenticated === null ? <Loading height={200} width={200} />
-        :
-        isAuthenticated === true ? <Redirect to="/profile" />
-        :
-        /* isAuthenticated === true ? null 
-        :
-        <Redirect to="/login" /> */
-        <Redirect to="/login" />
-      }
+      {/* <Footer /> */}
     </Router>
   );
 }

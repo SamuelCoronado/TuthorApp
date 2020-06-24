@@ -1,13 +1,16 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux';
 import {setProfileImage} from '../../../actions/profileActions'
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-const MainInfo = ({name, city, state, rating, birthdate, profileImage, setProfileImage}) => {
+const MainInfo = ({name, city, state, rating, birthdate, profileImage, setProfileImage, id}) => {
 
     const [file, setFile] = useState('');
 
     const [filename, setFilename] = useState('Choose file');
+
+    const userId = id;
 
     const onChange = (e) => {
       setFile(e.target.files[0])
@@ -16,6 +19,10 @@ const MainInfo = ({name, city, state, rating, birthdate, profileImage, setProfil
 
     const onSubmit = async(e) => {
       e.preventDefault()
+      if(file == '' || filename == ''){
+        alert('You have to select a file');
+        return;
+      }
       await setProfileImage(file)
       /* window.location.reload();
       return false */
@@ -31,7 +38,7 @@ const MainInfo = ({name, city, state, rating, birthdate, profileImage, setProfil
                   <input type="file" className="custom-file-input" name="image" onChange={(e) => onChange(e)}/>
                   <label className="custom-file-label" htmlFor="customFile">{filename}</label>
                 </div>
-                  <input type="submit" value="Upload" className="btn btn-primary btn-block mt-3"/>
+                  <input type="submit" value="Upload" className="btn btn-info btn-block mt-3"/>
               </form>
             </div>
             <div className="col-md-9">
@@ -39,7 +46,7 @@ const MainInfo = ({name, city, state, rating, birthdate, profileImage, setProfil
               <p className="font-weight-bold"><i className="fas fa-globe-americas"></i> {city}, {state}</p>
               {/* <p>{rating}</p> */}
               <p className="font-weight-bold"><i className="fas fa-birthday-cake"></i> {new Date(Date.now()).getFullYear() - new Date(birthdate).getFullYear()} years</p>
-              <button className="btn btn-primary">View active tutorings</button>
+               <Link className="btn btn-info" to={`/user/${userId}/tutorings`}>View active tutorings</Link>
             </div>
           </div>
       </div>
